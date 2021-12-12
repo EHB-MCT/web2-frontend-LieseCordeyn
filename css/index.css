@@ -1,0 +1,105 @@
+:root {
+    --orange: #DEB38C;
+    --darkpink: #CCA599;
+    --lightgrey: #D1C1B7;
+    --background: #D5C7BB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: black;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 100;
+    font-size: 25pt;
+}
+
+/****************
+    HEADER
+****************/
+body {
+    background-color: var(--background);
+}
+
+header {
+    height: 3.2em;
+    width: 100vw;
+
+}
+
+nav {
+    background-color: white;
+    text-align: center;
+}
+
+nav ul {
+    background-color: var(--lightgrey);
+    text-align: center;
+    border: 3px solid white;
+    display: inline-block;
+    padding: 7px 20px;
+    margin-bottom: 5px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+nav li {
+    background-color: var(--darkpink);
+    color: white;
+    list-style: none;
+    text-align: center;
+    border: 3px solid white;
+    display: inline-block;
+    padding: .4em .2em;
+}
+
+
+nav li a {
+    font-size: 20pt;
+    background-color: var(--lightgrey);
+    text-decoration: none;
+    color: white;
+    border: 3px solid white;
+    padding: 5px 10px;
+    margin: 0;
+}
+
+/************
+    MAIN
+************/
+main {
+    margin: auto;
+    margin-top: 10px;
+    width: 80vw;
+    height: 80vh;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 5px 10px 20px 10px rgb(0 0 0 / 20%);
+}
+
+main h1 {
+    color: var(--darkpink);
+    padding: 10px 0 5px 40px;
+
+}
+
+.books {
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-evenly;
+}
+
+.button {
+    text-align: right;
+    margin-right: 2em;
+}
+
+.button a {
+    background-color: var(--lightgrey);
+    text-decoration: none;
+    color: white;
+    font-size: 23pt;
+    padding: 4px 15px;
+    border-radius: 25px;
+    font-weight: bold;
+}
