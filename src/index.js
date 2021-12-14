@@ -3,6 +3,9 @@ import _ from 'lodash';
 "use strict"
 
 let books = {
+    init(){
+        this.getBooks()
+    },
     getBooks() {
         console.log("yes")
         fetch('https://web2-courseproject-liese.herokuapp.com/books')
@@ -20,4 +23,4 @@ let books = {
     }
 }
 
-books.getBooks();
+books.init();
