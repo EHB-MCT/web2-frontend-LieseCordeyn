@@ -65,7 +65,7 @@ nav li a {
 }
 
 /************
-    MAIN
+    HOME
 ************/
 main {
     margin: auto;
@@ -86,6 +86,7 @@ main h1 {
 .books {
     display: flex;
     padding: 0 10px;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
@@ -98,8 +99,20 @@ main h1 {
     background-color: var(--lightgrey);
     text-decoration: none;
     color: white;
-    font-size: 23pt;
+    font-size: 20pt;
     padding: 4px 15px;
     border-radius: 25px;
-    font-weight: bold;
+    font-weight: 200;
+}
+
+/************
+  BOOKSHELF
+************/
+
+.noMaxHeigt {
+    height: auto;
+}
+
+.noMaxHeigt .books article {
+    margin: .5em 1em;
 }
