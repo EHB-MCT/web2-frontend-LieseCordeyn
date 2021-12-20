@@ -53,7 +53,7 @@ let Ownbooks = {
         } else if (window.location.pathname == '/docs/html/wishlist.html') {
             wishlistBooks.forEach(x => {
                 htmlWishlistString += `<article id="${x.book_id}">
-                <img src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
+                <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
             </article>`
             });
             document.getElementById('booksWishlist').innerHTML = htmlWishlistString;
@@ -62,10 +62,10 @@ let Ownbooks = {
     showBookInfo(id) {
         console.log(id)
         fetch(`https://web2-courseproject-liese.herokuapp.com/book?id=${id}`)
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
-        })
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+            })
     }
 }
 
@@ -78,7 +78,13 @@ if (window.location.pathname == '/docs/html/bookshelf.html') {
         if (e.target.id !== "booksBookshelf") {
             Ownbooks.showBookInfo(e.target.id)
         }
+    })
+}
 
-
+if (window.location.pathname == '/docs/html/wishlist.html') {
+    document.getElementById('booksWishlist').addEventListener('click', (e) => {
+        if (e.target.id !== "booksWishlist") {
+            Ownbooks.showBookInfo(e.target.id)
+        }
     })
 }
