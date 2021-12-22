@@ -281,7 +281,7 @@ let Ownbooks = {
 
 let Library = {
     init() {
-        fetch('https://openlibrary.org/subjects/teens.json?limit=12')
+        fetch('https://openlibrary.org/subjects/teens.json?limit=12&published_in=2000-2020')
             .then(resp => resp.json())
             .then(data => {
                 let htmlString = ``;
@@ -293,6 +293,10 @@ let Library = {
                 })
                 document.getElementById('foundBooks').innerHTML = htmlString;
             })
+        document.getElementById('searchText').addEventListener('change', (e) =>{
+            let searchParameter = document.getElementById('search').value
+            Library.searchBooks(searchParameter);
+        })
     },
     showInfoToAdd(title) {
         fetch(`https://openlibrary.org/search.json?q=${title}&limit=1`)
@@ -384,6 +388,36 @@ let Library = {
             .then(data => {
                 window.location.reload();
             });
+    },
+    getBooksGenre(genre){
+        fetch(`https://openlibrary.org/subjects/${genre}.json?limit=12&published_in=2000-2020`)
+            .then(resp => resp.json())
+            .then(data => {
+                let htmlString = ``;
+                console.log(data);
+                data.works.forEach(x => {
+                    htmlString += `<article>
+                <img id="${x.title}" src="https://covers.openlibrary.org/b/id/${x.cover_id}-M.jpg" alt="" width="100px">
+            </article>`;
+                })
+                document.getElementById('foundBooks').innerHTML = htmlString;
+            })
+    },
+    searchBooks(param){
+        fetch(`https://openlibrary.org/search.json?q=${param}`)
+            .then(resp => resp.json())
+            .then(data => {
+                let filteredData = data.docs.filter(data => data.cover_i !== undefined);
+                console.log(filteredData)
+                let htmlString = ``;
+                for(let i = 0; i <12; i++){
+                    htmlString += `<article>
+                    <img id="${filteredData[i].title}" src="https://covers.openlibrary.org/b/id/${filteredData[i].cover_i}-M.jpg" alt="" width="100px">
+                    </article>`;
+                }
+                document.getElementById('foundBooks').innerHTML = htmlString;
+
+            })
     }
 }
 
@@ -393,7 +427,7 @@ if (window.location.pathname == '/docs/html/home.html' || window.location.pathna
 
 if (window.location.pathname == '/docs/html/bookshelf.html') {
     document.getElementById('booksBookshelf').addEventListener('click', (e) => {
-        if (e.target.id !== "booksBookshelf") {
+        if (e.target.id !== "" && e.target.id !== "booksBookshelf") {
             document.getElementById('mainBookshelf').style.display = "none";
             document.getElementById('bookInfoWishlist').style.display = "flex";
             Ownbooks.showBookInfo(e.target.id, "mainBookshelf");
@@ -403,7 +437,7 @@ if (window.location.pathname == '/docs/html/bookshelf.html') {
 
 if (window.location.pathname == '/docs/html/wishlist.html') {
     document.getElementById('booksWishlist').addEventListener('click', (e) => {
-        if (e.target.id !== "booksWishlist") {
+        if (e.target.id !== "" && e.target.id !== "booksWishlist") {
             document.getElementById('mainWishlist').style.display = "none";
             document.getElementById('bookInfoWishlist').style.display = "flex";
             Ownbooks.showBookInfo(e.target.id, "mainWishlist");
@@ -417,12 +451,17 @@ if (window.location.pathname == '/docs/html/library.html') {
 
 if (window.location.pathname == '/docs/html/library.html') {
     document.getElementById('foundBooks').addEventListener('click', (e) => {
-        if (e.target.id !== "") {
+        console.log(e.target.id)
+       if (e.target.id !== "" && e.target.id !== "foundBooks") {
             document.getElementById('searchForBook').style.display = "none";
             document.getElementById('addBook').style.display = "flex";
             Library.showInfoToAdd(e.target.id);
-        }
+        } 
     })
 
-
+    document.getElementById('genreButtons').addEventListener('click', (e) => {
+        if (e.target.id !== "" && e.target.id !== "genreButtons") {
+            Library.getBooksGenre(e.target.id)
+        }
+    })
 }
