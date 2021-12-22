@@ -99,6 +99,12 @@ let Ownbooks = {
                     htmlString += `<p>TO BE READ: NO</p>`
                 }
 
+                if (data.wishlist) {
+                    htmlString += `<p>WISHLIST: YES </p>`
+                } else {
+                    htmlString += `<p>WISHLIST: NO </p>`
+                }
+
 
                htmlString += `</div>
                 </div>
@@ -111,18 +117,152 @@ let Ownbooks = {
                 document.getElementById("bookInfoWishlist").innerHTML = htmlString;
 
                 document.getElementById("edit").addEventListener('click', (e) => {
-                    Ownbooks.editForm(id)
+                    Ownbooks.editForm(id, location)
                 })
 
                 document.getElementById('return').addEventListener('click', (e) => {
-                    document.getElementById("bookInfoWishlist").innerHTML = "";
-                    document.getElementById(location).style.display = "inherit";
-                    document.getElementById("bookInfoWishlist").style.display = "none";
+                    window.location.reload();
                 })
             })
     },
-    editForm(id){
-        console.log('ready to edit')
+    editForm(id, location){
+        let htmlString = ` <div>
+        <img src="https://covers.openlibrary.org/b/id/${id}-L.jpg" alt="">
+    </div>
+    <form action="submit">
+        <div>
+            <div id="mainInfo">
+                <p>TITLE: <input type="text" id="title" placeholder="title"></p>
+                <p>AUTHOR: <input type="text" id="author" placeholder="author"></p>
+            </div>
+            <div id="personalInfo">
+                <p>STARTED: <input type="text" id="started" placeholder="start date"></p>
+                <p>FINISHED: <input type="text" id="finished" placeholder="finish date"></p>
+                <p>PROCES: <input type="text" id="proces" placeholder="proces"></p>
+                <p>FAVORITE CHARACTER: <input type="text" id="favChar" placeholder="favorite character"></p>
+                <p>FAVORITE CHAPTER: <input type="text" id="favChap" placeholder="favorite chapter"></p>
+            </div>
+            <div id="extraInfo">
+                <div id="quoteInput">
+                    <p>FAVORITE QUOTE</p>
+                    <p><input type="text" id="favQuo" placeholder="favorite quote"></p>
+                </div>
+                <div id="ratingInput">
+                    <p>RATING: <input type="text" id="stars" placeholder="#"></p>
+                    <p>CURRENT READ: <input type="checkbox" id="CR"></p>
+                    <p>TO BE READ: <input type="checkbox" id="TBR"></p>
+                    <p>WISHLIST: <input type="checkbox" id="wishlist"></p>
+                </div>
+            </div>
+            <div id="buttonsInfo">
+                <p id="save">Save</p>
+            </div>
+        </div>
+    </form>
+     `
+
+        document.getElementById("bookInfoWishlist").innerHTML = htmlString;
+
+        document.getElementById("save").addEventListener('click', (e) => {
+            //check which values are filled in and send filled in values to function that send patch request
+            var info = {}
+            let title = document.getElementById('title').value
+            if(title != ""){
+                var value = "title";
+                var insertedvalue = title;
+                info[value] = insertedvalue;
+            }
+
+            let author = document.getElementById('author').value
+            if(author != ""){
+                var value = "author";
+                var insertedvalue = author;
+                info[value] = insertedvalue;
+            }
+
+            let started = document.getElementById('started').value
+            if(started != ""){
+                var value = "started";
+                var insertedvalue = started;
+                info[value] = insertedvalue;
+            }
+
+            let finished = document.getElementById('finished').value
+            if(finished != ""){
+                var value = "finished";
+                var insertedvalue = finished;
+                info[value] = insertedvalue;
+            }
+
+            let proces = document.getElementById('proces').value
+            if(proces != ""){
+                var value = "proces";
+                var insertedvalue = proces;
+                info[value] = insertedvalue;
+            }
+
+            let favChar = document.getElementById('favChar').value
+            if(favChar != ""){
+                var value = "favorite_character";
+                var insertedvalue = favChar;
+                info[value] = insertedvalue;
+            }
+
+            let favChap = document.getElementById('favChap').value
+            if(favChap != ""){
+                var value = "favorite_chapter";
+                var insertedvalue = favChap;
+                info[value] = insertedvalue;
+            }
+
+            let favQuo = document.getElementById('favQuo').value
+            if(favQuo != ""){
+                var value = "favorite_quote";
+                var insertedvalue = favQuo;
+                info[value] = insertedvalue;
+            }
+
+            let stars = document.getElementById('stars').value
+            if(stars != ""){
+                var value = "rating";
+                var insertedvalue = `${stars}/5`;
+                info[value] = insertedvalue;
+            }
+
+            let CR = document.getElementById('CR').checked
+                var CRvalue = "current_read";
+                var insertedvalue = CR;
+                info[CRvalue] = insertedvalue;
+
+            let TBR = document.getElementById('TBR').checked
+                var TBRvalue = "to_be_read";
+                var insertedvalue = TBR;
+                info[TBRvalue] = insertedvalue;
+
+            let wishlist = document.getElementById('wishlist').checked
+                var wishValue = "wishlist";
+                var insertedvalue = wishlist;
+                info[wishValue] = insertedvalue;
+
+            Ownbooks.sendInfo(info, id, location) 
+        })
+        
+    },
+    sendInfo(info, id, location){
+
+        fetch(`https://web2-courseproject-liese.herokuapp.com/books:?id=${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(info)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('challenge changed', data);
+            Ownbooks.showBookInfo(id, location )
+
+        });
     }
 }
 

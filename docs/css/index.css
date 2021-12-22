@@ -124,7 +124,7 @@ main h1 {
 
 #bookInfoWishlist {
     margin-top: 30px;
-    display: none;
+    display: none; 
 }
 
 
@@ -155,7 +155,14 @@ main h1 {
     background-color: var(--lightbrown);
     margin: .5em 1em;
     padding: .5em;
-    width: 47vw;
+    border-radius: 25px;
+    width: 20vw;
+}
+
+#quoteInput{
+    background-color: var(--lightbrown);
+    margin: .5em 1em;
+    padding: .5em;
     border-radius: 25px;
     width: 20vw;
 }
@@ -164,7 +171,14 @@ main h1 {
     background-color: var(--lightbrown);
     margin: .5em 1em;
     padding: .5em;
-    width: 47vw;
+    border-radius: 25px;
+    width: 20vw;
+}
+
+#ratingInput{
+    background-color: var(--lightbrown);
+    margin: .5em 1em;
+    padding: .5em;
     border-radius: 25px;
     width: 20vw;
 }
@@ -181,24 +195,20 @@ main h1 {
     font-size: 15pt;
 }
 
+#quoteInput p {
+    font-size: 13pt;
+}
+
 #rating p {
     font-size: 15pt;
 }
 
-#extraInfo {
-    display: flex;
+#ratingInput p {
+    font-size: 13pt;
 }
 
-button,
-input[type="submit"],
-input[type="reset"] {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
+#extraInfo {
+    display: flex;
 }
 
 #buttonsInfo {
@@ -224,3 +234,30 @@ input[type="reset"] {
 #buttonsInfo p:first-child {
     margin: .2em .2em;
 }
+
+/**************
+    FORM
+**************/
+input {
+    size: '';
+    width: 50%;
+    font-size: 14pt;
+    background-color: var(--lightbrown);
+    border: none;
+    border-bottom: 1px dashed;
+}
+
+#ratingInput input {
+    size: '';
+    width: 10%;
+}
+
+#quoteInput input {
+    size: '';
+    width: 50%;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+

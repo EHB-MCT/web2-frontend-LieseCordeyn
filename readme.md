@@ -14,3 +14,10 @@ documentation open library API - index.js
 
 style.display = "inherit" - index.css
     https://www.w3schools.com/jsref/prop_style_display.asp
+
+delete border when clicking on form input 
+    https://stackoverflow.com/questions/3397113/how-to-remove-focus-border-outline-around-text-input-boxes-chrome 
+
+enter data to JSON object 
+    https://stackoverflow.com/questions/736590/add-new-attribute-element-to-json-object-using-javascript?rq=1
+
