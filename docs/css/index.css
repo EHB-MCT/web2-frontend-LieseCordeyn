@@ -113,6 +113,28 @@ main h1 {
 /*************************
   BOOKSHELF AND WISHLIST
 *************************/
+.headerTitle {
+    display: flex;
+}
+
+.headerTitle a {
+    text-decoration: none;
+    color: var(--darkpink);
+    background-color: white;
+    border-radius: 50px;
+    border: 1px solid var(--darkpink);
+    font-size: 16pt;
+    font-weight: 600;
+    margin-left: 2em;
+    margin-top: .5em;
+    padding: 8px 20px 1px 20px;
+}
+
+.headerTitle a:hover{
+    background-color:var(--orange);
+    color: white;
+    border: 1px solid var(--orange);
+}
 
 .noMaxHeigt {
     height: auto;
@@ -260,4 +282,58 @@ input {
 textarea:focus, input:focus{
     outline: none;
 }
+
+
+/*********************
+    LIBRARY
+*******************/
+
+#searchText{
+    color: var(--darkpink);
+    font-size: 17pt;
+    margin-left: 11em;
+}
+
+#searchText input {
+    width: 80%;
+    background-color: white
+}
+
+#genreButtons p{
+    width: 10vw;
+    font-size: 16pt;
+    background-color: var(--background);
+    text-align: center;
+    margin: 20px 50px;
+    padding: 10px;
+    color: white;
+    border-radius: 25px;
+}
+
+#genreButtons p:hover{
+    background-color: var(--orange);
+}
+
+.libraryBooks{
+    display: flex;
+}
+
+.libraryBooks #foundBooks{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.libraryBooks #foundBooks article {
+    flex: 1 0 11%;
+    margin: .6em;
+}
+
+#addBook {
+    display: none;
+}
+ #addBook div img{
+     height: 80vh;
+     border-top-left-radius: 7%;
+     border-bottom-left-radius: 7%;
+ }
 
