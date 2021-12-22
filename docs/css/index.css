@@ -156,7 +156,7 @@ main h1 {
     margin: .5em 1em;
     padding: .5em;
     border-radius: 25px;
-    width: 20vw;
+    width: 21vw;
 }
 
 #quoteInput{
@@ -164,7 +164,7 @@ main h1 {
     margin: .5em 1em;
     padding: .5em;
     border-radius: 25px;
-    width: 20vw;
+    width: 21vw;
 }
 
 #rating {
@@ -172,7 +172,7 @@ main h1 {
     margin: .5em 1em;
     padding: .5em;
     border-radius: 25px;
-    width: 20vw;
+    width: 21vw;
 }
 
 #ratingInput{
@@ -180,7 +180,7 @@ main h1 {
     margin: .5em 1em;
     padding: .5em;
     border-radius: 25px;
-    width: 20vw;
+    width: 21vw;
 }
 
 #mainInfo p {
@@ -214,6 +214,7 @@ main h1 {
 #buttonsInfo {
     display: flex;
     justify-content: end;
+    margin-right: .7em;
 }
 
 #buttonsInfo p {
@@ -221,7 +222,7 @@ main h1 {
     text-decoration: none;
     color: white;
     font-size: 20pt;
-    margin: .2em 1.3em;
+    margin: .2em .4em;
     padding: 4px 15px;
     border-radius: 25px;
     font-weight: 200;
@@ -231,9 +232,7 @@ main h1 {
     background-color: var(--orange);
 }
 
-#buttonsInfo p:first-child {
-    margin: .2em .2em;
-}
+
 
 /**************
     FORM
@@ -245,6 +244,7 @@ input {
     background-color: var(--lightbrown);
     border: none;
     border-bottom: 1px dashed;
+
 }
 
 #ratingInput input {

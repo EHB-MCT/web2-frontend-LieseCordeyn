@@ -21,3 +21,5 @@ delete border when clicking on form input
 enter data to JSON object 
     https://stackoverflow.com/questions/736590/add-new-attribute-element-to-json-object-using-javascript?rq=1
 
+reload page 
+    https://www.w3schools.com/Jsref/met_loc_reload.asp 

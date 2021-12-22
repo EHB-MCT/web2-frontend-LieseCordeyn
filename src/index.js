@@ -110,6 +110,7 @@ let Ownbooks = {
                 </div>
                 <div id="buttonsInfo">
                     <p id="return">Return</p>
+                    <p id="delete">Delete</p>
                     <p id="edit">Edit</p>
                 </div>
                 </div>`
@@ -118,6 +119,10 @@ let Ownbooks = {
 
                 document.getElementById("edit").addEventListener('click', (e) => {
                     Ownbooks.editForm(id, location)
+                })
+
+                document.getElementById("delete").addEventListener('click', (e) =>{
+                    Ownbooks.deleteBook(id)
                 })
 
                 document.getElementById('return').addEventListener('click', (e) => {
@@ -263,6 +268,16 @@ let Ownbooks = {
             Ownbooks.showBookInfo(id, location )
 
         });
+    },
+    deleteBook(id){
+        console.log("delete!")
+        fetch(`https://web2-courseproject-liese.herokuapp.com/books:?id=${id}`, {
+            method: 'DELETE'
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            window.location.reload();
+        })
     }
 }
 
