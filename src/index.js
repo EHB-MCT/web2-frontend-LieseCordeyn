@@ -430,8 +430,19 @@ let Login = {
         document.getElementById('loginButton').addEventListener('click', (e) => {
             let user = document.getElementById('username').value
             let password= document.getElementById('password').value
-            console.log(user, password)
+            this.controlPassword(user, password)
         })
+    },
+    controlPassword(user, password){
+        fetch(`https://web2-courseproject-liese.herokuapp.com/users:user?user=${user}`)
+            .then(resp => resp.json())
+            .then(data => {
+                if(data.password == password){
+                    window.location.href = '/docs/html/home.html'
+                } else {
+                    document.getElementById('errorMessage').innerHTML = `<p> Username or password is incorrect </p>`
+                }
+            });
     }
 }
 
