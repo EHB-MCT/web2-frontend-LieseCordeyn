@@ -4,8 +4,18 @@ import _, {
 
 "use strict";
 
+let fileName 
+
+
+function updateFilename(){
+    fileName = window.location.pathname.split("/") 
+    fileName = fileName[fileName.length-1]
+}
+
+updateFilename()
+
 window.onload = function() {
-    console.log("test")
+
   }
 
 
@@ -470,8 +480,10 @@ let Library = {
 
 let Login = {
     init(){
+        console.log(document.getElementById('buttonForMaaike'))
         document.getElementById('buttonForMaaike').addEventListener('click', (e) =>{
-            window.location.href = '/docs/html/home.html'
+            window.location.href = './html/home.html'
+            updateFilename()
         })
 
         document.getElementById('loginButton').addEventListener('click', (e) => {
@@ -538,7 +550,11 @@ if (window.location.pathname == '/docs/html/library.html') {
     })
 }
 
-if(window.location.pathname == '/docs/index.html'){
+
+console.log(fileName)
+
+if(fileName == '' || fileName == 'index.html'){
+    console.log("yes")
     Login.init();
 }
 
