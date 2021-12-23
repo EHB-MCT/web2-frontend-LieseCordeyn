@@ -14,17 +14,26 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Map</a></li>
-                <li><a href="./html/home.html">Home</a></li>
-                <li><a href="./html/library.html">Library</a></li>
-            </ul>
-        </nav>
-    </header>
+    <main id="mainLogin">
+        <div id="login-screen">
+            <h1>CityOfBooks</h1>
+            <p>Hey you! Yes you there behind the screen.</p>
+            <p>Ready to join this amazing magical world?</p>
+            <form action="submit">
+                <label for="username">username</label>
+                <input type="text" name="username" id="username" required>
+                <label for="password">password</label>
+                <input type="text" name="password" id="password" required>
+                <p id="loginButton" class="buttonsLogin">Log in</p>
+            </form>
+            <div>
+                <p>Don't have the credentails? no worries!</p>
+                <p id="buttonForMaaike" class="buttonsLogin">Button for Maaike</p>
+            </div>
 
-
-</body>
+        </div>
+    </main>  
+    <script src="./main.js"></script> 
+</body> 
 
 </html>

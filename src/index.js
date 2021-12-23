@@ -293,7 +293,7 @@ let Library = {
                 })
                 document.getElementById('foundBooks').innerHTML = htmlString;
             })
-        document.getElementById('searchText').addEventListener('change', (e) =>{
+        document.getElementById('searchText').addEventListener('change', (e) => {
             let searchParameter = document.getElementById('search').value
             Library.searchBooks(searchParameter);
         })
@@ -335,38 +335,38 @@ let Library = {
                 </div>
             </div>`;
                 document.getElementById('addBook').innerHTML = htmlString;
-            
-            document.getElementById('return').addEventListener('click', (e) =>{
-                window.location.reload();
-            })
 
-            document.getElementById('add').addEventListener('click', (e) =>{
-                let id = data.docs[0].cover_i
-                let title = data.docs[0].title;
-                let author = data.docs[0].author_name[0];
-                let started = document.getElementById('started').value;
-                let finished = document.getElementById('finished').value;
-                let proces = document.getElementById('proces').value;
-                let favChar = document.getElementById('favChar').value;
-                let favChap = document.getElementById('favChap').value;
-                let favQuo = document.getElementById('favQuo').value;
-                let stars = document.getElementById('stars').value;
-                let CR = document.getElementById('CR').checked;
-                let TBR = document.getElementById('TBR').checked;
-                let wishlist = document.getElementById('wishlist').checked;
-                Library.addBook(id, title, author, started, finished, proces, favChar, favChap, favQuo, stars, CR,TBR,wishlist);
-            })
-            
+                document.getElementById('return').addEventListener('click', (e) => {
+                    window.location.reload();
+                })
+
+                document.getElementById('add').addEventListener('click', (e) => {
+                    let id = data.docs[0].cover_i
+                    let title = data.docs[0].title;
+                    let author = data.docs[0].author_name[0];
+                    let started = document.getElementById('started').value;
+                    let finished = document.getElementById('finished').value;
+                    let proces = document.getElementById('proces').value;
+                    let favChar = document.getElementById('favChar').value;
+                    let favChap = document.getElementById('favChap').value;
+                    let favQuo = document.getElementById('favQuo').value;
+                    let stars = document.getElementById('stars').value;
+                    let CR = document.getElementById('CR').checked;
+                    let TBR = document.getElementById('TBR').checked;
+                    let wishlist = document.getElementById('wishlist').checked;
+                    Library.addBook(id, title, author, started, finished, proces, favChar, favChap, favQuo, stars, CR, TBR, wishlist);
+                })
+
             })
 
     },
-    addBook(id, title, author, started, finished, proces, favChar, favChap, favQuo, stars, CR,TBR,wishlist){
+    addBook(id, title, author, started, finished, proces, favChar, favChap, favQuo, stars, CR, TBR, wishlist) {
         let book = {
             book_id: id.toString(),
             author: author,
             title: title,
             started: started,
-            finished:finished,
+            finished: finished,
             proces: proces,
             rating: stars,
             favorite_character: favChar,
@@ -389,7 +389,7 @@ let Library = {
                 window.location.reload();
             });
     },
-    getBooksGenre(genre){
+    getBooksGenre(genre) {
         fetch(`https://openlibrary.org/subjects/${genre}.json?limit=12&published_in=2000-2020`)
             .then(resp => resp.json())
             .then(data => {
@@ -403,14 +403,14 @@ let Library = {
                 document.getElementById('foundBooks').innerHTML = htmlString;
             })
     },
-    searchBooks(param){
+    searchBooks(param) {
         fetch(`https://openlibrary.org/search.json?q=${param}`)
             .then(resp => resp.json())
             .then(data => {
                 let filteredData = data.docs.filter(data => data.cover_i !== undefined);
                 console.log(filteredData)
                 let htmlString = ``;
-                for(let i = 0; i <12; i++){
+                for (let i = 0; i < 12; i++) {
                     htmlString += `<article>
                     <img id="${filteredData[i].title}" src="https://covers.openlibrary.org/b/id/${filteredData[i].cover_i}-M.jpg" alt="" width="100px">
                     </article>`;
@@ -418,6 +418,20 @@ let Library = {
                 document.getElementById('foundBooks').innerHTML = htmlString;
 
             })
+    }
+}
+
+let Login = {
+    init(){
+        document.getElementById('buttonForMaaike').addEventListener('click', (e) =>{
+            window.location.href = '/docs/html/home.html'
+        })
+
+        document.getElementById('loginButton').addEventListener('click', (e) => {
+            let user = document.getElementById('username').value
+            let password= document.getElementById('password').value
+            console.log(user, password)
+        })
     }
 }
 
@@ -452,11 +466,11 @@ if (window.location.pathname == '/docs/html/library.html') {
 if (window.location.pathname == '/docs/html/library.html') {
     document.getElementById('foundBooks').addEventListener('click', (e) => {
         console.log(e.target.id)
-       if (e.target.id !== "" && e.target.id !== "foundBooks") {
+        if (e.target.id !== "" && e.target.id !== "foundBooks") {
             document.getElementById('searchForBook').style.display = "none";
             document.getElementById('addBook').style.display = "flex";
             Library.showInfoToAdd(e.target.id);
-        } 
+        }
     })
 
     document.getElementById('genreButtons').addEventListener('click', (e) => {
@@ -464,4 +478,8 @@ if (window.location.pathname == '/docs/html/library.html') {
             Library.getBooksGenre(e.target.id)
         }
     })
+}
+
+if(window.location.pathname == '/docs/index.html'){
+    Login.init();
 }
