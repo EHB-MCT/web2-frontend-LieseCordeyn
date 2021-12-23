@@ -15,6 +15,31 @@
     font-size: 25pt;
 }
 
+/***************
+    LOG OUT
+***************/
+#log-out{
+    position: fixed;
+    top: 3%;
+    right: 3%;
+}
+
+#log-out a{
+    background-color: var(--lightgrey);
+    text-decoration: none;
+    color: white;
+    width: 10vw;
+    font-size: 16pt;
+    padding: 4px 15px;
+    border-radius: 25px;
+    font-weight: 200;
+    margin: auto;
+}
+
+#log-out a:hover{
+    background-color: var(--orange);
+}
+
 /****************
     HEADER
 ****************/
@@ -173,7 +198,7 @@ main h1 {
     background-color: var(--lightgrey);
     text-decoration: none;
     color: white;
-    font-size: 20pt;
+    font-size: 16pt;
     padding: 4px 15px;
     border-radius: 25px;
     font-weight: 200;
@@ -316,7 +341,7 @@ main h1 {
     background-color: var(--lightgrey);
     text-decoration: none;
     color: white;
-    font-size: 20pt;
+    font-size: 16pt;
     margin: .2em .4em;
     padding: 4px 15px;
     border-radius: 25px;
