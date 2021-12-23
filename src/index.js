@@ -4,6 +4,10 @@ import _, {
 
 "use strict";
 
+window.onload = function() {
+    console.log("test")
+  }
+
 
 //load all books in home section
 let Ownbooks = {
