@@ -19,9 +19,20 @@
     LOG OUT
 ***************/
 #log-out{
-    position: fixed;
+    position: absolute;
     top: 3%;
     right: 3%;
+}
+
+#logo{
+    position: absolute;
+    top: 4%;
+    left: 3%;
+}
+
+#logo p{
+    font-family: "Dancing Script", cursive;
+    color: var(--darkpink);
 }
 
 #log-out a{
