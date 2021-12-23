@@ -226,6 +226,22 @@ main h1 {
     display: flex;
 }
 
+.headerTitle p{
+    background-color: var(--lightgrey);
+    text-decoration: none;
+    color: white;
+    font-size: 16pt;
+    padding: 4px 15px;
+    border-radius: 25px;
+    font-weight: 200;
+    margin: 17px;
+    margin-bottom: 10px;
+}
+
+.headerTitle p:hover{
+    background-color: var(--orange);
+}
+
 .headerTitle a {
     text-decoration: none;
     color: var(--darkpink);

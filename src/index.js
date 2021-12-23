@@ -276,6 +276,49 @@ let Ownbooks = {
             .then(data => {
                 window.location.reload();
             })
+    },
+    filterBookshelf(id){
+        fetch('https://web2-courseproject-liese.herokuapp.com/books')
+        .then(resp => resp.json())
+        .then(data => {
+            let bookshelfBooks = data.filter(data => data.wishlist == false);
+            if(id == "everything"){
+                let htmlBookshelfString = ``
+                bookshelfBooks.forEach(x => {
+                    htmlBookshelfString += `<article id="${x.book_id}">
+                    <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
+                </article>`;
+                });
+                document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
+            }else if(id == "current"){
+                let htmlBookshelfString = ``
+                bookshelfBooks = bookshelfBooks.filter(x => x.current_read == true);
+                bookshelfBooks.forEach(x => {
+                     htmlBookshelfString += `<article id="${x.book_id}">
+                    <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
+                </article>`;
+                });
+                document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
+            }else if(id == "toBeRead"){
+                let htmlBookshelfString = ``
+                bookshelfBooks = bookshelfBooks.filter(x => x.to_be_read == true);
+                bookshelfBooks.forEach(x => {
+                     htmlBookshelfString += `<article id="${x.book_id}">
+                    <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
+                </article>`;
+                });
+                document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
+            }else if(id == "read"){
+                let htmlBookshelfString = ``
+                bookshelfBooks = bookshelfBooks.filter(x => x.to_be_read == false && x.current_read == false);
+                bookshelfBooks.forEach(x => {
+                     htmlBookshelfString += `<article id="${x.book_id}">
+                    <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
+                </article>`;
+                });
+                document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
+            }
+        });
     }
 }
 
@@ -493,4 +536,13 @@ if (window.location.pathname == '/docs/html/library.html') {
 
 if(window.location.pathname == '/docs/index.html'){
     Login.init();
+}
+
+if(window.location.pathname == '/docs/html/bookshelf.html'){
+    document.getElementById('filterButtons').addEventListener('click', (e) => {
+        console.log(e.target.id)
+        if(e.target.id !== "" && e.target.id !== "filterButtons"){
+            Ownbooks.filterBookshelf(e.target.id)
+        }
+    })
 }
