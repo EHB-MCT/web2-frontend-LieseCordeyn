@@ -4,19 +4,19 @@ import _, {
 
 "use strict";
 
-let fileName 
+let fileName
 
 
-function updateFilename(){
-    fileName = window.location.pathname.split("/") 
-    fileName = fileName[fileName.length-1]
+function updateFilename() {
+    fileName = window.location.pathname.split("/")
+    fileName = fileName[fileName.length - 1]
 }
 
 updateFilename()
 
-window.onload = function() {
+window.onload = function () {
 
-  }
+}
 
 
 //load all books in home section
@@ -33,7 +33,7 @@ let Ownbooks = {
     getBooks(bookshelfBooks, wishlistBooks) {
         let htmlBookshelfString = ``;
         let htmlWishlistString = ``;
-        if (window.location.pathname == '/docs/html/home.html') {
+        if (fileName == 'home.html') {
             for (let i = 0; i < 7; i++) {
                 if (bookshelfBooks[i] !== undefined) {
                     htmlBookshelfString += `<article id="${bookshelfBooks[i].book_id}">
@@ -54,7 +54,7 @@ let Ownbooks = {
             document.getElementById('previewWishlist').innerHTML = htmlWishlistString;
 
 
-        } else if (window.location.pathname == '/docs/html/bookshelf.html') {
+        } else if (fileName == 'bookshelf.html') {
             bookshelfBooks.forEach(x => {
                 htmlBookshelfString += `<article id="${x.book_id}">
                 <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
@@ -64,7 +64,7 @@ let Ownbooks = {
 
 
 
-        } else if (window.location.pathname == '/docs/html/wishlist.html') {
+        } else if (fileName == 'wishlist.html') {
             wishlistBooks.forEach(x => {
                 htmlWishlistString += `<article id="${x.book_id}">
                 <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
@@ -291,48 +291,48 @@ let Ownbooks = {
                 window.location.reload();
             })
     },
-    filterBookshelf(id){
+    filterBookshelf(id) {
         fetch('https://web2-courseproject-liese.herokuapp.com/books')
-        .then(resp => resp.json())
-        .then(data => {
-            let bookshelfBooks = data.filter(data => data.wishlist == false);
-            if(id == "everything"){
-                let htmlBookshelfString = ``
-                bookshelfBooks.forEach(x => {
-                    htmlBookshelfString += `<article id="${x.book_id}">
+            .then(resp => resp.json())
+            .then(data => {
+                let bookshelfBooks = data.filter(data => data.wishlist == false);
+                if (id == "everything") {
+                    let htmlBookshelfString = ``
+                    bookshelfBooks.forEach(x => {
+                        htmlBookshelfString += `<article id="${x.book_id}">
                     <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
                 </article>`;
-                });
-                document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
-            }else if(id == "current"){
-                let htmlBookshelfString = ``
-                bookshelfBooks = bookshelfBooks.filter(x => x.current_read == true);
-                bookshelfBooks.forEach(x => {
-                     htmlBookshelfString += `<article id="${x.book_id}">
+                    });
+                    document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
+                } else if (id == "current") {
+                    let htmlBookshelfString = ``
+                    bookshelfBooks = bookshelfBooks.filter(x => x.current_read == true);
+                    bookshelfBooks.forEach(x => {
+                        htmlBookshelfString += `<article id="${x.book_id}">
                     <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
                 </article>`;
-                });
-                document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
-            }else if(id == "toBeRead"){
-                let htmlBookshelfString = ``
-                bookshelfBooks = bookshelfBooks.filter(x => x.to_be_read == true);
-                bookshelfBooks.forEach(x => {
-                     htmlBookshelfString += `<article id="${x.book_id}">
+                    });
+                    document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
+                } else if (id == "toBeRead") {
+                    let htmlBookshelfString = ``
+                    bookshelfBooks = bookshelfBooks.filter(x => x.to_be_read == true);
+                    bookshelfBooks.forEach(x => {
+                        htmlBookshelfString += `<article id="${x.book_id}">
                     <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
                 </article>`;
-                });
-                document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
-            }else if(id == "read"){
-                let htmlBookshelfString = ``
-                bookshelfBooks = bookshelfBooks.filter(x => x.to_be_read == false && x.current_read == false);
-                bookshelfBooks.forEach(x => {
-                     htmlBookshelfString += `<article id="${x.book_id}">
+                    });
+                    document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
+                } else if (id == "read") {
+                    let htmlBookshelfString = ``
+                    bookshelfBooks = bookshelfBooks.filter(x => x.to_be_read == false && x.current_read == false);
+                    bookshelfBooks.forEach(x => {
+                        htmlBookshelfString += `<article id="${x.book_id}">
                     <img id="${x.book_id}" src="https://covers.openlibrary.org/b/id/${x.book_id}-M.jpg" alt="" width="100px">
                 </article>`;
-                });
-                document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
-            }
-        });
+                    });
+                    document.getElementById('booksBookshelf').innerHTML = htmlBookshelfString;
+                }
+            });
     }
 }
 
@@ -479,25 +479,25 @@ let Library = {
 }
 
 let Login = {
-    init(){
-        console.log(document.getElementById('buttonForMaaike'))
-        document.getElementById('buttonForMaaike').addEventListener('click', (e) =>{
+    init() {
+        document.getElementById('buttonForMaaike').addEventListener('click', (e) => {
             window.location.href = './html/home.html'
             updateFilename()
         })
 
         document.getElementById('loginButton').addEventListener('click', (e) => {
             let user = document.getElementById('username').value
-            let password= document.getElementById('password').value
+            let password = document.getElementById('password').value
             this.controlPassword(user, password)
         })
     },
-    controlPassword(user, password){
+    controlPassword(user, password) {
         fetch(`https://web2-courseproject-liese.herokuapp.com/users:user?user=${user}`)
             .then(resp => resp.json())
             .then(data => {
-                if(data.password == password){
-                    window.location.href = '/docs/html/home.html'
+                if (data.password == password) {
+                    window.location.href = './html/home.html'
+                    updateFilename()
                 } else {
                     document.getElementById('errorMessage').innerHTML = `<p> Username or password is incorrect </p>`
                 }
@@ -505,11 +505,11 @@ let Login = {
     }
 }
 
-if (window.location.pathname == '/docs/html/home.html' || window.location.pathname == '/docs/html/bookshelf.html' || window.location.pathname == '/docs/html/wishlist.html') {
+if (fileName == 'home.html' || fileName == 'bookshelf.html' || fileName == 'wishlist.html') {
     Ownbooks.init();
 }
 
-if (window.location.pathname == '/docs/html/bookshelf.html') {
+if (fileName == 'bookshelf.html') {
     document.getElementById('booksBookshelf').addEventListener('click', (e) => {
         if (e.target.id !== "" && e.target.id !== "booksBookshelf") {
             document.getElementById('mainBookshelf').style.display = "none";
@@ -519,7 +519,7 @@ if (window.location.pathname == '/docs/html/bookshelf.html') {
     })
 }
 
-if (window.location.pathname == '/docs/html/wishlist.html') {
+if (fileName == 'wishlist.html') {
     document.getElementById('booksWishlist').addEventListener('click', (e) => {
         if (e.target.id !== "" && e.target.id !== "booksWishlist") {
             document.getElementById('mainWishlist').style.display = "none";
@@ -529,11 +529,11 @@ if (window.location.pathname == '/docs/html/wishlist.html') {
     })
 }
 
-if (window.location.pathname == '/docs/html/library.html') {
+if (fileName == 'library.html') {
     Library.init();
 }
 
-if (window.location.pathname == '/docs/html/library.html') {
+if (fileName == 'library.html') {
     document.getElementById('foundBooks').addEventListener('click', (e) => {
         console.log(e.target.id)
         if (e.target.id !== "" && e.target.id !== "foundBooks") {
@@ -550,18 +550,15 @@ if (window.location.pathname == '/docs/html/library.html') {
     })
 }
 
-
-console.log(fileName)
-
-if(fileName == '' || fileName == 'index.html'){
+if (fileName == '' || fileName == 'index.html') {
     console.log("yes")
     Login.init();
 }
 
-if(window.location.pathname == '/docs/html/bookshelf.html'){
+if (fileName == 'bookshelf.html') {
     document.getElementById('filterButtons').addEventListener('click', (e) => {
         console.log(e.target.id)
-        if(e.target.id !== "" && e.target.id !== "filterButtons"){
+        if (e.target.id !== "" && e.target.id !== "filterButtons") {
             Ownbooks.filterBookshelf(e.target.id)
         }
     })
