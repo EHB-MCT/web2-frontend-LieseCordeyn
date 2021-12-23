@@ -6,19 +6,12 @@ import _, {
 
 let fileName
 
-
 function updateFilename() {
     fileName = window.location.pathname.split("/")
     fileName = fileName[fileName.length - 1]
 }
 
 updateFilename()
-
-window.onload = function () {
-
-}
-
-
 //load all books in home section
 let Ownbooks = {
     init() {

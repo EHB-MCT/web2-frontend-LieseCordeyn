@@ -23,3 +23,6 @@ enter data to JSON object
 
 reload page 
     https://www.w3schools.com/Jsref/met_loc_reload.asp 
+
+getting help from Ken Van Nuffel and Axel Musch 
+    -> Fixing problems with pathnames for github -> changing document.local.pathname to a function that calls the last element of the phatname -> problems caused by the docs folder that doesn't exist in the github url
